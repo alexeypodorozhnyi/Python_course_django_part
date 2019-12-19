@@ -10,10 +10,11 @@ class MyClass:
 
 
 def index(request):
-    my_list = ["January", "February","March","April","May","June",'July',"August","September","October","November","December"]
+    my_list = [1,2,3,4,5,6]
     return render(request, 'index.html', {
-        'my_list' : my_list
+        'my_list': my_list
     })
+
 
 
 def new(request):

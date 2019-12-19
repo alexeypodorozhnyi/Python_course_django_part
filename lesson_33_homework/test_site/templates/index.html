@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <div>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% include 'add_first.html' %}
     {% for item in my_list %}
-        {% if forloop.counter0|divisibleby:2 != 0 %}
-            <span>{{ item }}</span>
-            <br>
-        {%else%}
-            <span>This is secret month</span>
-            <br>
-        {% endif %}
+        {% include 'add_second.html' with list_id=item %}
     {% endfor %}
+    <div style="padding: 20px; background-color: blue"></div>
+    {% url 'index' %}
+    {% endblock %}
 </div>
-</body>
-</html>
