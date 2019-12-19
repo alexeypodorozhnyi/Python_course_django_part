@@ -1,8 +1,9 @@
 from django.urls import path,re_path
 
-from .views import new,edit,lock,processing,return_code
+from .views import new,edit,lock,processing,return_code,index
 
 urlpatterns = [
+    path('',index,name='index-html'),
     path('articles/new', new, name='articles-new'),
     path('articles/edit', edit, name='articles-edit'),
     path('articles/lock', lock, name='articles-lock'),
