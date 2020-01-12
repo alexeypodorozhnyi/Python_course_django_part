@@ -1,4 +1,0 @@
-lesson35/venv/
-lesson35/.idea/
-lesson34/venv/
-lesson34/.idea/
