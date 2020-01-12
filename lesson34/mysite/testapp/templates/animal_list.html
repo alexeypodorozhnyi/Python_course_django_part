@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h2>Animals</h2>
+    <ul>
+        {% for animal in animals %}
+            <li>{{ animal.type }} {{ animal.name }} </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
