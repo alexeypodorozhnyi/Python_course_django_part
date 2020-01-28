@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% for note in object_list %}
+<div class="container">
+    <div class="card mb-5" style="width: 38rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ note.name }}</h5>
+            <p class="card-text">{{ note.text }}</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form method="post" action="{% url 'note_delete_url' note.pk %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+</div>
+<div class="container">
+    <form method="post" action="{% url 'note_update_url' note.pk %}">
+        {% csrf_token %}
+        <input type="submit" value="Share">
+    </form>
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="post" action="{% url 'note_create_url' %}">
+    {% csrf_token %}
+    {{ note_create_form }}
+    <input type="submit" value="Add comment">
+</form>
+<p><a class="btn btn-outline-success ml-auto" href="{% url 'profile_detail_url' pk=user.pk %}" role="button">My info</a></p>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
+{% for item in object_list %}
+<div class="container"content>
+    <div class="card mb-5" style="width: 38rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ item.price }}</h6>
+            <h6 class="card-subtitle mb-5 text-muted">{{ item.count_items }}</h6>
+        </div>
+    </div>
+  {% if user.is_authenticated %}
+    <form  action="{% url 'shopping_url' %}" method="post">
+            {% csrf_token %}
+            {{ shopping_event_form.as_p }}
+            <input type="submit" value="Buy now">
+            <input type="hidden" value="{{item.pk}}" name="item" id="id_item">
+    </form>
+    {% if user.is_staff %}
+    <a href="{% url 'item_update_url' item.pk %}" role="button">Change Item</a>
+    {% endif %}
+  {% endif %}
+</div>
+{% endfor %}
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'item_create_url' %}" role="button">Add item</a>
+    {% endif %}
+{% endblock %}
+
+

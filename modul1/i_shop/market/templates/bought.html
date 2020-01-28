@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+{% for shopping_event in object_list %}
+<div class="container" content>
+    <div class="card mb-5" style="width: 38rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ shopping_event.item.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ shopping_event.count_of_items }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ shopping_event.event_date_time }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ shopping_event.item.price }}</h6>
+        </div>
+    </div>
+</div>
+<form action="{% url 'reversal_create_url' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{shopping_event.pk}}" name="shopping_event" id="id_shopping_event">
+    <input type="submit" value="Return">
+</form>
+{% endfor %}
+{% endblock %}

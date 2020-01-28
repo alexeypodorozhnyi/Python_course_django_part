@@ -7,4 +7,10 @@
 </h1>
 <p>{{article.text}}</p>
 
+ <form method="post" action="{% url 'comment_create_url' %}">
+    {% csrf_token %}
+    {{ comment_create_form.as_p }}
+    <input type="hidden" name="article_id" value={{article}}'>
+    <input type="submit" value="Add comment">
+ </form>
 {% endblock %}

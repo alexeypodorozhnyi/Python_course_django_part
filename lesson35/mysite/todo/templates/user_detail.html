@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>{{ object.user.username }}</p>
+<p>{{ object.user.last_name }}</p>
+<p>{{ object.user.first_name }}</p>
+<p>{{ object.user.email }}</p>
+<p>{{ object.email_token }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p class="mb-5">
+        Please <a href="{% url 'login_url' %}" role="button">Login</a> or
+    <a href="{% url 'user_register_url' %}" role="button">Register</a>
+    </p>
+{% endblock %}

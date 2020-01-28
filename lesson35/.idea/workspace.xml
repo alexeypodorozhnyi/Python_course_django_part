@@ -23,16 +23,18 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysite/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../modul1" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Django_course_part\lesson35\mysite\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Django_course_part\lesson35\mysite\templates\registration" />
       <recent name="C:\Django_course_part\lesson35\mysite\templates" />
       <recent name="C:\Django_course_part\lesson35\mysite\templates\registgation" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Django_course_part\lesson35\mysite\todo\templates" />
+      <recent name="C:\Django_course_part\lesson35\mysite\templates" />
     </key>
   </component>
   <component name="RunDashboard">

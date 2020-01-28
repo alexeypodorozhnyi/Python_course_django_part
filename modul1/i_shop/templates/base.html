@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+</head>
+<body>
+<div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+            <h5 class="text-white h4">Collapsed content</h5>
+            <span class="text-muted">Toggleable via the navbar brand.</span>
+        </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="btn btn-outline-success" href="{% url 'item_list_url' %}" role="button">Home</a>
+            {% if user.is_authenticated %}
+            <a class="btn btn-outline-success ml-auto" href="{% url 'logout_url' %}" role="button">Logout</a>
+            <a class="btn btn-outline-success ml-auto" href="{% url 'bought_list_url' %}" role="button">Buy List</a>
+            {% if user.is_staff %}
+            <a class="btn btn-outline-success ml-auto" href="{% url 'reversal_list_url' %}" role="button">Reversal List</a>
+            {% endif %}
+            {% else %}
+            <div>
+                <a class="btn btn-outline-success ml-auto" href="{% url 'login_url' %}" role="button">Login</a>
+            </div>
+            <div>
+                <a class="btn btn-outline-success ml-auto" href="{% url 'register_url' %}" role="button">Register</a>
+            </div>
+            {% endif %}
+        </div>
+        >
+    </nav>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>
