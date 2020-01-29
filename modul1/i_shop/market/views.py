@@ -30,7 +30,6 @@ class ShoppingEventCreate(LoginRequiredMixin, CreateView):
     http_method_names = ['post']
     success_url = '/'
     form_class = ShoppingEventForm
-    template_name = 'shopping_event_create.html'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -45,8 +44,8 @@ class ShoppingEventCreate(LoginRequiredMixin, CreateView):
             messages.warning(self.request, "The sum of your order less that you have")
             return HttpResponseRedirect('/')
         self.object.order_sum = item.price * self.object.count_of_items
-        Profile.reduce_wallet_sum(profile, order_sum=self.object.order_sum)
-        Item.reduce_item_count(item, self.object.count_of_items)
+        profile.reduce_wallet_sum(self.object.order_sum)
+        item.reduce_item_count(self.object.count_of_items)
         self.object.save()
         return super().form_valid(form)
 
@@ -62,10 +61,6 @@ class ReversalList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         if self.request.user.is_authenticated:
             queryset = queryset.filter(is_confirmed=False)
         return queryset
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(object_list=object_list, **kwargs)
-        return context
 
 
 class BoughtItemList(LoginRequiredMixin, ListView):
@@ -133,7 +128,6 @@ class ReversalConfirm(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = ReversalEvent
     success_url = '/'
     form_class = ReversalForm
-    template_name = 'reversal_update.html'
     permission_required = 'ReversalEvent.can_change'
 
     def form_valid(self, form):
@@ -142,8 +136,8 @@ class ReversalConfirm(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
             self.object.is_confirmed = True
             self.object.save()
             shopping_event = ShoppingEvent.objects.get(pk=self.request.POST.get("shopping_event", ""))
-            Profile.add_wallet_sum(shopping_event.profile, order_sum=shopping_event.order_sum)
-            Item.add_item_count(shopping_event.item, shopping_event.count_of_items)
+            shopping_event.profile.add_wallet_sum(shopping_event.order_sum)
+            shopping_event.item.add_item_count(shopping_event.count_of_items)
         return super().form_valid(form)
 
 
