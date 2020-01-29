@@ -102,7 +102,6 @@ class ReversalCreate(LoginRequiredMixin, CreateView):
     model = ReversalEvent
     success_url = '/'
     form_class = ReversalForm
-    template_name = 'reversal_create.html'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
